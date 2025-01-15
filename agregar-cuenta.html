@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Cuenta Bancaria - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .container {
+            max-width: 380px;
+            margin: 20px auto;
+            padding: 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #4a148c;
+            font-size: 24px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h1 .material-icons {
+            color: #FFB500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            border-color: #4a148c;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(36, 5, 73, 0.3);
+        }
+
+        .submit-btn .material-icons {
+            font-size: 20px;
+            color: #FFB500;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 16px;
+            color: #4a148c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-btn:hover {
+            text-decoration: underline;
+        }
+
+        .bank-info {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .bank-info h2 {
+            color: #4a148c;
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .bank-info .material-icons {
+            color: #FFB500;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="material-icons">account_balance</span>
+            Agregar Cuenta Bancaria
+        </h1>
+
+        <div class="bank-info">
+            <h2>
+                <span class="material-icons">info</span>
+                Información Importante
+            </h2>
+            <p>La cuenta debe estar a tu nombre y ser una cuenta activa en un banco de Honduras.</p>
+        </div>
+
+        <form id="bankForm" onsubmit="return guardarCuenta(event)">
+            <div class="form-group">
+                <label for="bankName">Banco</label>
+                <select id="bankName" required>
+                    <option value="">Selecciona un banco</option>
+                    <option value="BAC">BAC Credomatic</option>
+                    <option value="Ficohsa">Banco Ficohsa</option>
+                    <option value="Atlantida">Banco Atlántida</option>
+                    <option value="Occidente">Banco de Occidente</option>
+                    <option value="Banpais">Banpaís</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="accountType">Tipo de Cuenta</label>
+                <select id="accountType" required>
+                    <option value="">Selecciona el tipo de cuenta</option>
+                    <option value="ahorro">Cuenta de Ahorro</option>
+                    <option value="cheques">Cuenta de Cheques</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="accountNumber">Número de Cuenta</label>
+                <input type="text" id="accountNumber" required
+                    pattern="[0-9]{10,20}"
+                    placeholder="Ejemplo: 1234567890"
+                    oninput="this.value = this.value.replace(/\D/g, '')">
+            </div>
+
+            <div class="form-group">
+                <label for="accountName">Nombre del Titular</label>
+                <input type="text" id="accountName" required
+                    placeholder="Como aparece en el banco">
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span class="material-icons">save</span>
+                Guardar Cuenta
+            </button>
+        </form>
+
+        <a href="mi-perfil.html" class="back-btn">
+            <span class="material-icons">arrow_back</span>
+            Volver al Perfil
+        </a>
+    </div>
+
+    <script>
+        function guardarCuenta(event) {
+            event.preventDefault();
+            
+            // Aquí iría la lógica para guardar la cuenta bancaria
+            // Por ahora solo mostraremos un mensaje y volveremos al perfil
+            alert('Cuenta bancaria guardada exitosamente');
+            window.location.href = 'mi-perfil.html';
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

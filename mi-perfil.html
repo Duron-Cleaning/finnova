@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(74, 20, 140, 0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .profile-icon {
+            width: 120px;
+            height: 120px;
+            background-color: #f0e6ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .profile-icon:hover {
+            background-color: #e1d0ff;
+        }
+
+        .profile-icon:hover .hover-text {
+            opacity: 1;
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-icon .material-icons {
+            font-size: 40px;
+            color: #4a148c;
+        }
+
+        .profile-icon input[type="file"] {
+            display: none;
+        }
+
+        .hover-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(74, 20, 140, 0.8);
+            color: white;
+            font-size: 12px;
+            padding: 4px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid #f0e6ff;
+        }
+
+        section h2 {
+            font-size: 18px;
+            color: #4a148c;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        section h2 .material-icons {
+            font-size: 20px;
+        }
+
+        .campo {
+            margin-bottom: 20px;
+        }
+
+        .campo:last-child {
+            margin-bottom: 0;
+        }
+
+        .campo label {
+            display: block;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .campo-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .campo input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 15px;
+            color: #333;
+            background-color: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .campo input:disabled {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .campo input:focus {
+            outline: none;
+            border-color: #4a148c;
+            box-shadow: 0 0 0 2px rgba(74, 20, 140, 0.1);
+        }
+
+        .btn-editar {
+            background: #f0e6ff;
+            color: #4a148c;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-editar:hover {
+            background: #e1d0ff;
+        }
+
+        .btn-accion {
+            width: 100%;
+            padding: 14px;
+            background-color: #4a148c;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            margin-bottom: 12px;
+        }
+
+        .btn-accion:hover {
+            background-color: #6a1b9a;
+            transform: translateY(-1px);
+        }
+
+        .btn-accion .material-icons {
+            font-size: 20px;
+        }
+
+        .btn-cerrar-sesion {
+            background-color: #fff;
+            color: #d32f2f;
+            border: 2px solid #d32f2f;
+            margin-top: 12px;
+        }
+
+        .btn-cerrar-sesion:hover {
+            background-color: #d32f2f;
+            color: white;
+        }
+
+        .payment-methods {
+            margin-top: 16px;
+        }
+
+        .add-payment-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            background: white;
+            border: 2px dashed #4a148c;
+            border-radius: 12px;
+            color: #4a148c;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-payment-btn:hover {
+            background: rgba(74, 20, 140, 0.05);
+        }
+
+        .add-payment-btn .material-icons {
+            font-size: 24px;
+            color: #FFB500;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            width: 380px;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: #4a148c;
+            font-size: 20px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .payment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+        }
+
+        .payment-option:hover {
+            border-color: #4a148c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 20, 140, 0.1);
+        }
+
+        .payment-option .material-icons {
+            font-size: 24px;
+            color: #FFB500;
+        }
+
+        .saved-cards {
+            margin-top: 16px;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: none;
+            border: none;
+            color: #4a148c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        .btn-back .material-icons {
+            font-size: 24px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                border-radius: 0;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-back">
+                <span class="material-icons">arrow_back</span>
+            </a>
+            <label for="profile-photo" class="profile-icon">
+                <input type="file" id="profile-photo" accept="image/*">
+                <div id="profile-image-container">
+                    <span class="material-icons">account_circle</span>
+                </div>
+                <div class="hover-text">Cambiar foto</div>
+            </label>
+            <h1>Mi Perfil</h1>
+        </header>
+
+        <main>
+            <section class="info-usuario">
+                <h2>
+                    <span class="material-icons">person</span>
+                    Información Personal
+                </h2>
+                <div class="campo">
+                    <label for="nombre">Nombre Completo</label>
+                    <div class="campo-content">
+                        <input type="text" id="nombre" value="Juan Pérez" disabled>
+                        <button class="btn-editar">
+                            <span class="material-icons">edit</span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="correo">Correo Electrónico</label>
+                    <div class="campo-content">
+                        <input type="email" id="correo" value="juan.perez@example.com" disabled>
+                        <button class="btn-editar">
+                            <span class="material-icons">edit</span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+                <div class="campo">
+                    <label for="telefono">Teléfono</label>
+                    <div class="campo-content">
+                        <input type="tel" id="telefono" value="+504 1234-5678" disabled>
+                        <button class="btn-editar">
+                            <span class="material-icons">edit</span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="metodos-pago">
+                <h2>
+                    <span class="material-icons">credit_card</span>
+                    Métodos de Pago
+                </h2>
+                <div class="payment-methods">
+                    <button class="add-payment-btn" onclick="openPaymentModal()">
+                        <span class="material-icons">add_circle</span>
+                        Agregar Método de Pago
+                    </button>
+                    <div class="saved-cards">
+                        <!-- Las tarjetas guardadas se mostrarán aquí -->
+                    </div>
+                </div>
+            </section>
+
+            <section class="seguridad">
+                <h2>
+                    <span class="material-icons">security</span>
+                    Seguridad
+                </h2>
+                <button class="btn-accion">
+                    <span class="material-icons">lock</span>
+                    Cambiar Contraseña
+                </button>
+            </section>
+
+            <section class="historial">
+                <h2>
+                    <span class="material-icons">history</span>
+                    Historial de Créditos
+                </h2>
+                <button class="btn-accion">
+                    <span class="material-icons">visibility</span>
+                    Ver Historial
+                </button>
+            </section>
+        </main>
+
+        <footer>
+            <button class="btn-accion btn-cerrar-sesion">
+                <span class="material-icons">logout</span>
+                Cerrar Sesión
+            </button>
+        </footer>
+    </div>
+
+    <!-- Payment Method Modal -->
+    <div id="payment-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Agregar Método de Pago</h2>
+                <button class="close-modal" onclick="closePaymentModal()">&times;</button>
+            </div>
+            <div class="payment-options">
+                <a href="agregar-tarjeta.html" class="payment-option">
+                    <span class="material-icons">credit_card</span>
+                    <span>Tarjeta de Crédito/Débito</span>
+                </a>
+                <a href="agregar-cuenta.html" class="payment-option">
+                    <span class="material-icons">account_balance</span>
+                    <span>Cuenta Bancaria</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openPaymentModal() {
+            document.getElementById('payment-modal').style.display = 'flex';
+        }
+
+        function closePaymentModal() {
+            document.getElementById('payment-modal').style.display = 'none';
+        }
+    </script>
+    <script src="js/mi-perfil.js"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completar Solicitud - FINNOVA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .form-section h3 {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Remover flechas de campos numéricos */
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+
+        .file-input-container {
+            margin-bottom: 10px;
+        }
+
+        .file-input-container label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .file-input-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .file-input-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .file-name {
+            margin-left: 10px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background-color: #581b7b;
+        }
+
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 12px;
+            padding-right: 24px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* Estilos para los tooltips de ayuda */
+        .input-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .input-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .input-help {
+            font-size: 12px;
+            color: #666;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* Estilos para el mensaje */
+        .message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            border-radius: 5px;
+            color: white;
+            font-weight: 500;
+            display: none;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+        .error {
+            background-color: #f44336;
+        }
+
+        @keyframes slideDown {
+            from {
+                top: -100px;
+                opacity: 0;
+            }
+            to {
+                top: 20px;
+                opacity: 1;
+            }
+        }
+
+        .submit-button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Completa tu Solicitud</h1>
+        
+        <form id="loanForm" onsubmit="return validateAndSubmit(event)">
+            <!-- Información Personal -->
+            <div class="form-section">
+                <h3>Información Personal</h3>
+                <input type="text" name="identidad" placeholder="Identidad" required>
+                <input type="text" name="monthlyIncome" placeholder="Ingreso Mensual (L)" required 
+                       pattern="[0-9,]*" 
+                       oninput="this.value = this.value.replace(/[^0-9,]/g, '');"
+                       inputmode="numeric">
+            </div>
+
+            <!-- Información Laboral -->
+            <div class="form-section">
+                <h3>Información Laboral</h3>
+                <input type="number" name="employmentTime" placeholder="Años de Empleo" required>
+                <select name="employmentType" required>
+                    <option value="">Tipo de Empleo</option>
+                    <option value="permanent">Permanente</option>
+                    <option value="contract">Contrato</option>
+                    <option value="business_owner">Negocio Propio</option>
+                    <option value="freelance">Freelance</option>
+                </select>
+            </div>
+
+            <!-- Historial Crediticio -->
+            <div class="form-section">
+                <h3>Historial Crediticio</h3>
+                
+                <div class="input-group">
+                    <label class="input-label">Pagos Tardíos (últimos 12 meses)</label>
+                    <input type="text" name="latePayments" 
+                           placeholder="Ejemplo: 2" 
+                           pattern="[0-9]*"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           inputmode="numeric">
+                    <div class="input-help">Ingrese el número de veces que se ha atrasado en pagos de préstamos o tarjetas en el último año</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Préstamos en Mora</label>
+                    <input type="text" name="defaultedLoans" 
+                           placeholder="Ejemplo: 0" 
+                           pattern="[0-9]*"
+                           oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+                           inputmode="numeric">
+                    <div class="input-help">Ingrese el número de préstamos que actualmente tiene en mora (más de 90 días de atraso)</div>
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label">Deudas Actuales (L)</label>
+                    <input type="text" name="currentDebts" 
+                           placeholder="Ejemplo: 25,000" 
+                           pattern="[0-9,]*"
+                           oninput="this.value = this.value.replace(/[^0-9,]/g, '');"
+                           inputmode="numeric">
+                    <div class="input-help">Ingrese el monto total de todas sus deudas actuales (préstamos, tarjetas, etc.)</div>
+                </div>
+            </div>
+
+            <!-- Documentación -->
+            <div class="form-section">
+                <h3>Documentación</h3>
+                <div class="file-input-container">
+                    <label>Identidad</label>
+                    <input type="file" id="identidadDoc" name="identidadDoc" accept="image/*,.pdf" required>
+                    <span id="identidadDocFileName">Sin archivos seleccionados</span>
+                </div>
+
+                <div class="file-input-container">
+                    <label>Comprobante de Ingresos</label>
+                    <input type="file" id="incomesDoc" name="incomesDoc" accept="image/*,.pdf" required>
+                    <span id="incomesDocFileName">Sin archivos seleccionados</span>
+                </div>
+
+                <div class="file-input-container">
+                    <label>Estados de Cuenta</label>
+                    <input type="file" id="bankDoc" name="bankDoc" accept="image/*,.pdf" required>
+                    <span id="bankDocFileName">Sin archivos seleccionados</span>
+                </div>
+
+                <div class="file-input-container">
+                    <label>Constancia Laboral</label>
+                    <input type="file" id="employmentDoc" name="employmentDoc" accept="image/*,.pdf" required>
+                    <span id="employmentDocFileName">Sin archivos seleccionados</span>
+                </div>
+
+                <div class="file-input-container">
+                    <label>Recibo de Energía</label>
+                    <input type="file" id="energyDoc" name="energyDoc" accept="image/*,.pdf" required>
+                    <span id="energyDocFileName">Sin archivos seleccionados</span>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button" id="submitButton">Enviar Solicitud</button>
+        </form>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        // Manejar la visualización del nombre de archivo seleccionado
+        const fileInputs = ['identidadDoc', 'incomesDoc', 'bankDoc', 'employmentDoc', 'energyDoc'];
+        
+        fileInputs.forEach(inputId => {
+            document.getElementById(inputId).addEventListener('change', function(e) {
+                const fileName = e.target.files[0] ? e.target.files[0].name : 'Sin archivos seleccionados';
+                document.getElementById(inputId + 'FileName').textContent = fileName;
+                validateForm(); // Validar formulario cuando se selecciona un archivo
+            });
+        });
+
+        // Función para validar el formulario
+        function validateForm() {
+            const form = document.getElementById('loanForm');
+            const submitButton = document.getElementById('submitButton');
+            const allInputsFilled = Array.from(form.elements).every(element => {
+                if (element.type === 'file') {
+                    return element.files.length > 0;
+                }
+                if (element.type === 'text' || element.type === 'select-one') {
+                    return element.value.trim() !== '';
+                }
+                return true;
+            });
+
+            submitButton.disabled = !allInputsFilled;
+            return allInputsFilled;
+        }
+
+        // Función para mostrar mensajes
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.textContent = text;
+            message.className = `message ${type}`;
+            message.style.display = 'block';
+
+            setTimeout(() => {
+                message.style.display = 'none';
+            }, 5000);
+        }
+
+        // Función para validar y enviar el formulario
+        function validateAndSubmit(event) {
+            event.preventDefault();
+            
+            if (!validateForm()) {
+                showMessage('Por favor complete todos los campos y adjunte todos los documentos requeridos', 'error');
+                return false;
+            }
+
+            // Aquí iría la lógica para enviar el formulario
+            showMessage('¡Solicitud enviada exitosamente! Nos pondremos en contacto contigo pronto.', 'success');
+            
+            // Redirigir después de 3 segundos
+            setTimeout(() => {
+                window.location.href = 'solicitud-confirmacion.html';
+            }, 3000);
+
+            return false;
+        }
+
+        // Agregar validación en tiempo real para todos los campos
+        document.querySelectorAll('input, select').forEach(element => {
+            element.addEventListener('input', validateForm);
+            element.addEventListener('change', validateForm);
+        });
+
+        // Validar formulario al cargar la página
+        validateForm();
+    </script>
+</body>
+</html>

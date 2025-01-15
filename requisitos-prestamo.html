@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos para Préstamo - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: white;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(36, 5, 73, 0.15);
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4a148c;
+            margin: 0 0 24px 0;
+            font-weight: 700;
+        }
+
+        .image-container {
+            width: 345px;
+            height: 345px;
+            margin: 0 auto 32px;
+            background: #f8f9fa;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .requirements-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: rgba(74, 20, 140, 0.03);
+            border-radius: 12px;
+            transition: transform 0.3s ease;
+        }
+
+        .requirement-item:hover {
+            transform: translateX(5px);
+            background: rgba(74, 20, 140, 0.06);
+        }
+
+        .icon-container {
+            width: 48px;
+            height: 48px;
+            background: #f0f0f0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .icon-container .material-icons {
+            font-size: 24px;
+            color: #FFB500;
+        }
+
+        .requirement-text {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 500;
+            margin-top: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(36, 5, 73, 0.3);
+        }
+
+        .btn-back .material-icons {
+            font-size: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+            }
+
+            .image-container {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Requisitos para Préstamo</h1>
+            <div class="image-container">
+                <img src="images/requisitos-image.png" alt="Requisitos para préstamo">
+            </div>
+        </header>
+
+        <main>
+            <div class="requirements-list">
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">person</span>
+                    </div>
+                    <div class="requirement-text">
+                        Ser mayor de 18 años y menor de 70.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">account_balance</span>
+                    </div>
+                    <div class="requirement-text">
+                        Tener una cuenta bancaria a tu nombre en la que recibas tus ingresos.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">flag</span>
+                    </div>
+                    <div class="requirement-text">
+                        Tener nacionalidad hondureña y vivir en el país.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">smartphone</span>
+                    </div>
+                    <div class="requirement-text">
+                        Tener un celular a tu nombre.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">payments</span>
+                    </div>
+                    <div class="requirement-text">
+                        Demostrar ingresos superiores a 15,000 lempiras mensuales.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">verified_user</span>
+                    </div>
+                    <div class="requirement-text">
+                        No estar reportado negativamente en centrales de riesgos.
+                    </div>
+                </div>
+                <div class="requirement-item">
+                    <div class="icon-container">
+                        <span class="material-icons">email</span>
+                    </div>
+                    <div class="requirement-text">
+                        Tener acceso a tu correo electrónico.
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-back">
+                <span class="material-icons">arrow_back</span>
+                Volver a la Página Principal
+            </a>
+        </main>
+    </div>
+</body>
+</html>
