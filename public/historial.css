@@ -1,0 +1,193 @@
+.historial-title {
+    color: #6A0DAD;
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 16px;
+}
+
+.historial-content {
+    padding: 20px 16px;
+}
+
+/* Filtros */
+.filtros-section {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(106, 13, 173, 0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.filtro-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.filtro-grupo label {
+    color: #666;
+    font-size: 14px;
+}
+
+.filtro-grupo input,
+.filtro-grupo select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.filtro-grupo input:focus,
+.filtro-grupo select:focus {
+    border-color: #6A0DAD;
+    outline: none;
+}
+
+.filtrar-button {
+    grid-column: 1 / -1;
+    background-color: #6A0DAD;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.filtrar-button:hover {
+    background-color: #8B1FDD;
+}
+
+/* Lista de Pagos */
+.pagos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pago-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(106, 13, 173, 0.1);
+}
+
+.pago-info {
+    margin-bottom: 12px;
+}
+
+.pago-principal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.pago-fecha {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #333;
+}
+
+.pago-fecha .material-icons {
+    font-size: 18px;
+    color: #666;
+}
+
+.pago-monto {
+    font-size: 18px;
+    font-weight: 500;
+    color: #6A0DAD;
+}
+
+.pago-detalles {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.metodo-pago {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 14px;
+}
+
+.metodo-pago .material-icons {
+    font-size: 18px;
+}
+
+.estado-pago {
+    font-size: 14px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.estado-confirmado {
+    background-color: #e6fff0;
+    color: #00a650;
+}
+
+.estado-pendiente {
+    background-color: #fff9e6;
+    color: #f5a623;
+}
+
+.descargar-button {
+    width: 100%;
+    background-color: white;
+    border: 1px solid #6A0DAD;
+    color: #6A0DAD;
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.descargar-button:hover {
+    background-color: #f0e6ff;
+}
+
+/* Mensaje y Botón Volver */
+.mensaje-beneficios {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin: 24px 0;
+    padding: 0 16px;
+}
+
+.volver-button {
+    width: 100%;
+    background-color: #f5f5f5;
+    border: none;
+    color: #333;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 24px;
+}
+
+.volver-button:hover {
+    background-color: #e0e0e0;
+}

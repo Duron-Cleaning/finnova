@@ -1,0 +1,264 @@
+.app-container {
+    max-width: 380px;
+    margin: 0 auto;
+    padding: 16px;
+    background-color: #fff;
+}
+
+.app-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: #6A0DAD;
+}
+
+.calendario-title {
+    margin: 0;
+    margin-left: 8px;
+    font-size: 24px;
+    color: #6A0DAD;
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Sección de progreso */
+.progress-section {
+    background-color: #F8F8F8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.progress-info h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+#progressPercentage {
+    font-size: 20px;
+    font-weight: 700;
+    color: #6A0DAD;
+}
+
+.progress-bar {
+    height: 8px;
+    background-color: #E0E0E0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #6A0DAD;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-message {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+/* Lista de pagos */
+.pagos-list {
+    margin-bottom: 24px;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.pago-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #E0E0E0;
+    gap: 12px;
+}
+
+.pago-item:last-child {
+    border-bottom: none;
+}
+
+.status-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-dot.pagado {
+    background-color: #4CAF50;
+}
+
+.status-dot.pendiente {
+    background-color: #FFA000;
+}
+
+.status-dot.atrasado {
+    background-color: #F44336;
+}
+
+.pago-info {
+    flex-grow: 1;
+}
+
+.pago-fecha {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #666;
+    font-size: 14px;
+}
+
+.pago-fecha .material-icons {
+    font-size: 16px;
+}
+
+.pago-monto {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-top: 4px;
+}
+
+.pagar-button {
+    background-color: #6A0DAD;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.pagar-button:hover {
+    background-color: #8B1FDD;
+}
+
+/* Resumen de pagos */
+.pagos-summary {
+    background-color: #F8F8F8;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.summary-item:last-child {
+    margin-bottom: 0;
+}
+
+.summary-item label {
+    color: #666;
+    font-size: 14px;
+}
+
+.summary-item span {
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Leyenda de estados */
+.estados-legend {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 12px;
+    background-color: #F8F8F8;
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Botón de volver */
+.back-to-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px;
+    background-color: white;
+    border: 2px solid #6A0DAD;
+    color: #6A0DAD;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-bottom: 24px;
+}
+
+.back-to-details:hover {
+    background-color: rgba(106, 13, 173, 0.1);
+}
+
+/* Mensaje de soporte */
+.support-message {
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Animaciones */
+.pago-item {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: slideIn 0.3s ease forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pago-item:nth-child(1) { animation-delay: 0.1s; }
+.pago-item:nth-child(2) { animation-delay: 0.2s; }
+.pago-item:nth-child(3) { animation-delay: 0.3s; }
+.pago-item:nth-child(4) { animation-delay: 0.4s; }
+.pago-item:nth-child(5) { animation-delay: 0.5s; }
+.pago-item:nth-child(6) { animation-delay: 0.6s; }
