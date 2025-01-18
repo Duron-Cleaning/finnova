@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .container {
+            max-width: 380px;
+            margin: 20px auto;
+            padding: 24px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: #E65100;
+            cursor: pointer;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            color: #FF9800;
+        }
+
+        .back-button .material-icons {
+            font-size: 24px;
+        }
+
+        h1 {
+            color: #E65100;
+            font-size: 24px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #FF9800;
+            outline: none;
+        }
+
+        .password-group {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .toggle-password .material-icons {
+            font-size: 20px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #E65100 0%, #FF9800 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 32px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(230, 81, 0, 0.3);
+        }
+
+        .submit-btn .material-icons {
+            font-size: 20px;
+            color: #FFE0B2;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: white;
+            border: 2px solid #FF9800;
+            border-radius: 8px;
+            color: #E65100;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: rgba(255, 152, 0, 0.05);
+        }
+
+        .file-name {
+            margin-top: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .verification-section {
+            background: #FFF3E0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .verification-section h2 {
+            color: #E65100;
+            font-size: 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .verification-section h2 .material-icons {
+            color: #FF9800;
+        }
+
+        .id-upload, .selfie-upload {
+            margin-bottom: 24px;
+        }
+
+        .id-preview, .selfie-preview {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #FF9800;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            position: relative;
+        }
+
+        .id-preview {
+            /* Tamaño de cédula hondureña en proporción */
+            aspect-ratio: 85/54;
+            height: auto;
+        }
+
+        .id-placeholder, .selfie-placeholder {
+            text-align: center;
+            color: #666;
+        }
+
+        .id-placeholder .material-icons, .selfie-placeholder .material-icons {
+            font-size: 48px;
+            color: #FF9800;
+            margin-bottom: 8px;
+        }
+
+        .id-placeholder p, .selfie-placeholder p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .upload-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .upload-hint {
+            font-size: 12px;
+            color: #666;
+            margin: 0;
+            text-align: center;
+        }
+
+        #idImage, #selfieImage {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* Estilos para la animación del botón */
+        @keyframes successAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .submit-btn.success {
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            pointer-events: none;
+            animation: successAnimation 0.5s ease;
+        }
+
+        .submit-btn .success-icon {
+            display: none;
+        }
+
+        .submit-btn.success .success-icon {
+            display: inline-block;
+        }
+
+        .submit-btn.success .submit-icon {
+            display: none;
+        }
+
+        /* Overlay de carga */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #FFE0B2;
+            border-top: 4px solid #FF9800;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Modal de éxito */
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 1001;
+        }
+
+        .success-modal .check-icon {
+            width: 80px;
+            height: 80px;
+            background: #4CAF50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+
+        .success-modal .material-icons {
+            font-size: 48px;
+            color: white;
+        }
+
+        .success-modal h2 {
+            color: #4CAF50;
+            margin-bottom: 16px;
+        }
+
+        .success-modal p {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .success-modal .continue-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-modal .continue-btn:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #E5E7E8;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #757575;
+            background: white;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 1L7 7L13 1" stroke="%23757575" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 14px;
+        }
+
+        .form-group select:focus {
+            outline: none;
+            border-color: #FF5722;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">
+                <span class="material-icons">arrow_back</span>
+            </a>
+            <h1>Registro</h1>
+        </div>
+
+        <form id="registroForm" onsubmit="return enviarRegistro(event)">
+            <div class="form-group">
+                <label for="nombre">Nombre completo</label>
+                <input type="text" id="nombre" required
+                    placeholder="Ingresa tu nombre completo">
+            </div>
+
+            <div class="form-group">
+                <label for="identidad">Número de identidad</label>
+                <input type="text" id="identidad" required
+                    placeholder="Ingresa tu número de identidad"
+                    pattern="[0-9]{13}"
+                    title="Debe contener 13 dígitos">
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono de contacto</label>
+                <input type="tel" id="telefono" required
+                    placeholder="Ingresa tu número de teléfono"
+                    pattern="[0-9]{8}"
+                    title="Debe contener 8 dígitos">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" id="correo" required
+                    placeholder="Ingresa tu correo electrónico">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Contraseña</label>
+                <div class="password-group">
+                    <input type="password" id="password" required
+                        placeholder="Ingresa tu contraseña"
+                        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                        title="Mínimo 8 caracteres, al menos una letra y un número">
+                    <button type="button" class="toggle-password" onclick="togglePassword('password')">
+                        <span class="material-icons">visibility_off</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirmar contraseña</label>
+                <div class="password-group">
+                    <input type="password" id="confirmPassword" required
+                        placeholder="Confirma tu contraseña">
+                    <button type="button" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                        <span class="material-icons">visibility_off</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Género</label>
+                <input type="text" id="genero" name="genero" placeholder="Ingresa tu género" list="generos" required>
+                <datalist id="generos">
+                    <option value="Masculino">
+                    <option value="Femenino">
+                </datalist>
+            </div>
+
+            <div class="verification-section">
+                <h2>
+                    <span class="material-icons">verified_user</span>
+                    Verificación de Identidad
+                </h2>
+                
+                <div class="id-upload">
+                    <label>Documento de identidad (DNI)</label>
+                    <div class="id-preview" id="idPreview">
+                        <div class="id-placeholder">
+                            <span class="material-icons">credit_card</span>
+                            <p>Tamaño: 8.5 x 5.4 cm</p>
+                        </div>
+                        <img id="idImage" style="display: none;">
+                    </div>
+                    <input type="file" id="documento" accept="image/*" style="display: none"
+                        onchange="previewImage('documento', 'idImage', 'idPreview')">
+                    <button type="button" class="upload-btn" onclick="document.getElementById('documento').click()">
+                        <span class="material-icons">file_upload</span>
+                        Subir DNI
+                    </button>
+                    <p class="upload-hint">Asegúrate que el documento sea legible y todos los datos sean visibles</p>
+                </div>
+
+                <div class="selfie-upload">
+                    <label>Selfie con tu DNI</label>
+                    <div class="selfie-preview" id="selfiePreview">
+                        <div class="selfie-placeholder">
+                            <span class="material-icons">face</span>
+                            <p>Toma una selfie sosteniendo tu DNI</p>
+                        </div>
+                        <img id="selfieImage" style="display: none;">
+                    </div>
+                    <input type="file" id="selfie" accept="image/*" style="display: none"
+                        onchange="previewImage('selfie', 'selfieImage', 'selfiePreview')">
+                    <button type="button" class="upload-btn" onclick="document.getElementById('selfie').click()">
+                        <span class="material-icons">add_a_photo</span>
+                        Tomar Selfie
+                    </button>
+                    <p class="upload-hint">Tu rostro y el DNI deben ser claramente visibles</p>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <span class="material-icons submit-icon">how_to_reg</span>
+                <span class="material-icons success-icon">check_circle</span>
+                Completar Registro
+            </button>
+        </form>
+    </div>
+
+    <div class="loading-overlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <div class="success-modal">
+        <div class="check-icon">
+            <span class="material-icons">check</span>
+        </div>
+        <h2>¡Registro Exitoso!</h2>
+        <p>Tu cuenta ha sido creada correctamente.</p>
+        <button class="continue-btn" onclick="window.location.href='index.html'">
+            Continuar
+        </button>
+    </div>
+
+    <script>
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.nextElementSibling;
+            const icon = button.querySelector('.material-icons');
+
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+
+        function previewImage(inputId, imageId, previewId) {
+            const input = document.getElementById(inputId);
+            const image = document.getElementById(imageId);
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    image.src = e.target.result;
+                    image.style.display = 'block';
+                    preview.querySelector('div').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        async function verificarIdentidad(idImage, selfieImage) {
+            try {
+                // Aquí iría la integración con la API de verificación de identidad
+                // Por ejemplo:
+                /*
+                const response = await fetch('API_ENDPOINT', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        id_image: idImage,
+                        selfie_image: selfieImage
+                    })
+                });
+                const result = await response.json();
+                return result.verified;
+                */
+                return true; // Simulación de verificación exitosa
+            } catch (error) {
+                console.error('Error en verificación:', error);
+                return false;
+            }
+        }
+
+        async function enviarRegistro(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const loadingOverlay = document.querySelector('.loading-overlay');
+            const successModal = document.querySelector('.success-modal');
+            
+            // Validar contraseñas
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Las contraseñas no coinciden');
+                return false;
+            }
+
+            // Validar que se hayan subido las imágenes
+            const idImage = document.getElementById('idImage');
+            const selfieImage = document.getElementById('selfieImage');
+            
+            if (idImage.style.display === 'none' || selfieImage.style.display === 'none') {
+                alert('Por favor sube tanto tu DNI como tu selfie');
+                return false;
+            }
+
+            // Mostrar overlay de carga
+            loadingOverlay.style.display = 'flex';
+            
+            try {
+                // Simular verificación de identidad
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                const verified = await verificarIdentidad(idImage.src, selfieImage.src);
+                
+                if (!verified) {
+                    alert('No se pudo verificar tu identidad. Por favor intenta de nuevo.');
+                    loadingOverlay.style.display = 'none';
+                    return false;
+                }
+
+                // Simular envío del formulario
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Ocultar overlay de carga
+                loadingOverlay.style.display = 'none';
+                
+                // Mostrar animación de éxito en el botón
+                submitBtn.classList.add('success');
+                
+                // Mostrar modal de éxito después de un breve delay
+                setTimeout(() => {
+                    successModal.style.display = 'block';
+                }, 500);
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Ocurrió un error. Por favor intenta de nuevo.');
+                loadingOverlay.style.display = 'none';
+            }
+            
+            return false;
+        }
+    </script>
+</body>
+</html>

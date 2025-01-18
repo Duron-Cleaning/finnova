@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simula tu Crédito - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/simulador.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <button class="back-button" onclick="window.location.href='index.html'">
+                <span class="material-icons">arrow_back</span>
+            </button>
+            <h1 class="simulador-title">¿Cuántos meses quieres?</h1>
+        </header>
+
+        <main class="simulador-content">
+            <div class="plazo-selector">
+                <button class="plazo-button" data-meses="3">3 meses</button>
+                <button class="plazo-button" data-meses="6">6 meses</button>
+                <button class="plazo-button" data-meses="12">12 meses</button>
+            </div>
+
+            <div class="monto-selector">
+                <div class="slider-container">
+                    <div class="monto-display">
+                        <span class="monto-label">Monto solicitado:</span>
+                        <span class="monto-value">L. 700</span>
+                    </div>
+                    <input type="range" 
+                           id="montoSlider" 
+                           min="700" 
+                           max="7000" 
+                           step="100" 
+                           value="700"
+                           class="slider">
+                    <div class="slider-labels">
+                        <span>L. 700</span>
+                        <span>L. 7,000</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resumen-credito">
+                <div class="resumen-item">
+                    <span class="resumen-label">Total Desembolsado:</span>
+                    <span class="resumen-value" id="totalDesembolsado">L. 700</span>
+                </div>
+                <div class="resumen-item">
+                    <span class="resumen-label">Cuota Mensual:</span>
+                    <span class="resumen-value" id="cuotaMensual">L. 0</span>
+                </div>
+                <div class="resumen-item">
+                    <span class="resumen-label">Amortización de crédito:</span>
+                    <span class="resumen-value" id="amortizacion">L. 700</span>
+                </div>
+                <div class="resumen-item">
+                    <span class="resumen-label">Fecha del primer pago:</span>
+                    <span class="resumen-value" id="fechaPago">--/--/----</span>
+                </div>
+            </div>
+
+            <div class="mensaje-motivacional">
+                <p>Simula tu crédito y avanza con confianza.</p>
+            </div>
+
+            <button class="siguiente-button" onclick="window.location.href='completar-solicitud.html'">
+                Siguiente →
+            </button>
+        </main>
+    </div>
+
+    <script src="js/simulador.js"></script>
+</body>
+</html>

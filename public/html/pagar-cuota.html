@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paga tu Cuota - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/pagos.css">
+    <style>
+        .payment-card {
+            background: white;
+            border-radius: 24px;
+            padding: 24px;
+            margin: 16px;
+            box-shadow: 0 4px 20px rgba(74, 20, 140, 0.1);
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
+        .loan-summary {
+            background: #f8f9fe;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .summary-label {
+            color: #666;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .summary-value {
+            color: #212121;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .next-payment {
+            background: #4a148c0a;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        .section-title {
+            color: #4a148c;
+            font-size: 16px;
+            margin-bottom: 16px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title .material-icons {
+            font-size: 20px;
+            color: #FFB500;
+        }
+
+        .amount-value {
+            color: #4a148c;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .payment-methods-section {
+            margin-bottom: 24px;
+        }
+
+        .add-payment-method {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            background: white;
+            border: 1px solid rgba(74, 20, 140, 0.2);
+            border-radius: 12px;
+            color: #4a148c;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .add-payment-method:hover {
+            background: #4a148c0a;
+        }
+
+        .add-payment-method .material-icons {
+            color: #FFB500;
+        }
+
+        .pay-now-btn {
+            width: 100%;
+            padding: 16px;
+            background: #4a148c;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+        }
+
+        .pay-now-btn:hover {
+            background: #3a1070;
+        }
+
+        .payment-history {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            color: #4a148c;
+            background: none;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-history:hover {
+            color: #3a1070;
+        }
+
+        .payment-reminder {
+            margin-top: 16px;
+            padding: 16px;
+            background: #fff3e0;
+            border-radius: 12px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #e65100;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .payment-reminder .material-icons {
+            font-size: 20px;
+            color: #FFB500;
+        }
+
+        .reminder-text strong {
+            color: #e65100;
+            font-weight: 600;
+        }
+
+        .app-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            position: relative;
+            background: white;
+        }
+
+        .header-logo {
+            width: 300px;
+            height: 70px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-logo svg {
+            width: 100%;
+            height: 100%;
+            max-width: 300px;
+        }
+
+        .header-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: #4a148c;
+        }
+
+        .back-button .material-icons {
+            font-size: 24px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 340px;
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.2s ease-out;
+            margin-top: 20vh;
+            max-width: 90vw;
+            box-sizing: border-box;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #4a148c;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .close-modal {
+            width: 32px;
+            height: 32px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(74, 20, 140, 0.05);
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            background: rgba(74, 20, 140, 0.1);
+        }
+
+        .close-modal .material-icons {
+            font-size: 20px;
+            color: #4a148c;
+        }
+
+        .payment-methods-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            padding: 8px 0;
+        }
+
+        .payment-method-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: white;
+            border: 1.5px solid rgba(74, 20, 140, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .payment-method-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(74, 20, 140, 0.05);
+            border-radius: 10px;
+            margin-right: 16px;
+        }
+
+        .method-details h3 {
+            color: #212121;
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+        }
+
+        .method-details p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .payment-confirmation {
+            padding: 16px 0;
+        }
+
+        .payment-details {
+            background: rgba(74, 20, 140, 0.03);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .detail-row span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .detail-row strong {
+            color: #4a148c;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .confirm-payment-btn {
+            width: 100%;
+            background: #4a148c;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .confirm-payment-btn:hover {
+            background: #3a1070;
+            transform: translateY(-1px);
+        }
+
+        .confirm-payment-btn:active {
+            transform: translateY(0);
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .payment-form label {
+            color: #4a148c;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .payment-form input,
+        .payment-form select {
+            padding: 12px;
+            border: 1.5px solid rgba(74, 20, 140, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            color: #212121;
+            background: white;
+            transition: all 0.2s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .payment-form input:focus,
+        .payment-form select:focus {
+            outline: none;
+            border-color: #4a148c;
+            box-shadow: 0 0 0 3px rgba(74, 20, 140, 0.1);
+        }
+
+        .payment-form input::placeholder {
+            color: #999;
+        }
+
+        #cardCvv {
+            width: 100%;
+            min-width: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-logo">
+                <object data="images/logo-finnova.svg" type="image/svg+xml" width="300" height="70">
+                    <img src="images/logo-finnova.svg" alt="Finnova - Tu futuro financiero a un clic">
+                </object>
+            </div>
+            <button class="back-button" onclick="history.back()">
+                <span class="material-icons">arrow_back</span>
+            </button>
+            <h1 class="pagos-title">Paga tu Cuota</h1>
+        </header>
+
+        <main class="pagos-content">
+            <div class="payment-card">
+                <div class="loan-summary">
+                    <h2 class="section-title">
+                        <span class="material-icons">account_balance</span>
+                        Resumen del Préstamo
+                    </h2>
+                    <div class="summary-row">
+                        <span class="summary-label">Monto total</span>
+                        <span class="summary-value">L 5,000.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Cuotas pendientes</span>
+                        <span class="summary-value">4 de 6</span>
+                    </div>
+                </div>
+
+                <div class="next-payment">
+                    <h2 class="section-title">
+                        <span class="material-icons">event</span>
+                        Próxima Cuota
+                    </h2>
+                    <div class="summary-row">
+                        <span class="summary-label">Vencimiento</span>
+                        <span class="summary-value">14 feb 2025</span>
+                    </div>
+                    <div class="summary-row">
+                        <span class="summary-label">Monto</span>
+                        <span class="amount-value">L 890.00</span>
+                    </div>
+                </div>
+
+                <div class="payment-methods-section">
+                    <h2 class="section-title">
+                        <span class="material-icons">credit_card</span>
+                        Métodos de Pago
+                    </h2>
+                    
+                    <button class="add-payment-method" onclick="mostrarMetodosPago()">
+                        <span class="material-icons">add_circle</span>
+                        Agregar Método de Pago
+                    </button>
+
+                    <button class="pay-now-btn" onclick="mostrarPago()">
+                        <span class="material-icons">payment</span>
+                        Pagar Ahora
+                    </button>
+
+                    <button class="payment-history" onclick="irAHistorial()">
+                        <span class="material-icons">history</span>
+                        Ver Historial de Pagos
+                    </button>
+                </div>
+
+                <div class="payment-reminder">
+                    <span class="material-icons">info</span>
+                    <div class="reminder-text">
+                        Recuerda que pagar <strong>puntualmente</strong> tus cuotas te ayuda a construir un historial crediticio positivo.
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div id="metodoPagoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Métodos de Pago</h2>
+                <button class="close-modal" onclick="cerrarModal('metodoPagoModal')">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="payment-methods-list">
+                <div class="payment-method-option" onclick="mostrarFormularioTarjeta()">
+                    <div class="payment-method-icon">
+                        <span class="material-icons">credit_card</span>
+                    </div>
+                    <div class="method-details">
+                        <h3>Tarjeta de Crédito</h3>
+                        <p>Paga con tu tarjeta de crédito</p>
+                    </div>
+                </div>
+                <div class="payment-method-option" onclick="mostrarFormularioBanco()">
+                    <div class="payment-method-icon">
+                        <span class="material-icons">account_balance</span>
+                    </div>
+                    <div class="method-details">
+                        <h3>Cuenta Bancaria</h3>
+                        <p>Paga desde tu cuenta bancaria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tarjetaModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Agregar Tarjeta</h2>
+                <button class="close-modal" onclick="cerrarModal('tarjetaModal')">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <form onsubmit="agregarTarjeta(event)" class="payment-form">
+                <div class="form-group">
+                    <label>Número de Tarjeta</label>
+                    <input type="text" id="cardNumber" pattern="[0-9]*" inputmode="numeric" maxlength="16" placeholder="1234 5678 9012 3456" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Fecha de Vencimiento</label>
+                        <input type="text" id="cardExpiry" pattern="[0-9/]*" inputmode="numeric" maxlength="5" placeholder="MM/YY" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CVV</label>
+                        <input type="text" id="cardCvv" pattern="[0-9]*" inputmode="numeric" maxlength="4" placeholder="123" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Nombre en la Tarjeta</label>
+                    <input type="text" id="cardName" placeholder="Como aparece en la tarjeta" required>
+                </div>
+                <button type="submit" class="confirm-payment-btn">
+                    <span class="material-icons">add_circle</span>
+                    Agregar Tarjeta
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="bancoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Conectar Cuenta Bancaria</h2>
+                <button class="close-modal" onclick="cerrarModal('bancoModal')">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <form onsubmit="agregarCuentaBancaria(event)" class="payment-form">
+                <div class="form-group">
+                    <label>Banco</label>
+                    <select id="bankName" required>
+                        <option value="">Selecciona tu banco</option>
+                        <option value="bac">BAC Credomatic</option>
+                        <option value="ficohsa">Banco Ficohsa</option>
+                        <option value="atlantida">Banco Atlántida</option>
+                        <option value="occidente">Banco de Occidente</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Número de Cuenta</label>
+                    <input type="text" id="accountNumber" pattern="[0-9]*" inputmode="numeric" placeholder="Número de cuenta" required>
+                </div>
+                <div class="form-group">
+                    <label>Nombre del Titular</label>
+                    <input type="text" id="accountName" placeholder="Nombre del titular" required>
+                </div>
+                <button type="submit" class="confirm-payment-btn">
+                    <span class="material-icons">add_circle</span>
+                    Conectar Cuenta
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div id="pagoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Confirmar Pago</h2>
+                <button class="close-modal" onclick="cerrarModal('pagoModal')">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="payment-confirmation">
+                <div class="payment-details">
+                    <div class="detail-row">
+                        <span>Monto a Pagar</span>
+                        <strong>L 890.00</strong>
+                    </div>
+                    <div class="detail-row">
+                        <span>Fecha de Pago</span>
+                        <strong>14 feb 2025</strong>
+                    </div>
+                </div>
+                <button class="confirm-payment-btn" onclick="procesarPago()">
+                    <span class="material-icons">check_circle</span>
+                    Confirmar Pago
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function mostrarMetodosPago() {
+            document.getElementById('metodoPagoModal').style.display = 'block';
+        }
+
+        function cerrarModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function mostrarFormularioTarjeta() {
+            cerrarModal('metodoPagoModal');
+            document.getElementById('tarjetaModal').style.display = 'block';
+        }
+
+        function mostrarFormularioBanco() {
+            cerrarModal('metodoPagoModal');
+            document.getElementById('bancoModal').style.display = 'block';
+        }
+
+        function mostrarPago() {
+            document.getElementById('pagoModal').style.display = 'block';
+        }
+
+        function procesarPago() {
+            // Aquí iría la lógica de procesamiento del pago
+            alert('¡Pago realizado con éxito!');
+            cerrarModal('pagoModal');
+        }
+
+        function irAHistorial() {
+            window.location.href = 'historial-pagos.html';
+        }
+
+        // Cerrar modales al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+
+        function formatCardNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+            input.value = value;
+        }
+
+        function formatExpiry(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            input.value = value;
+        }
+
+        document.getElementById('cardNumber')?.addEventListener('input', (e) => formatCardNumber(e.target));
+        document.getElementById('cardExpiry')?.addEventListener('input', (e) => formatExpiry(e.target));
+
+        function agregarTarjeta(event) {
+            event.preventDefault();
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardName = document.getElementById('cardName').value;
+
+            // Aquí iría la lógica para guardar la tarjeta
+            const paymentMethod = {
+                type: 'card',
+                number: cardNumber.slice(-4),
+                expiry: cardExpiry,
+                name: cardName
+            };
+
+            // Guardar en localStorage
+            const savedMethods = JSON.parse(localStorage.getItem('paymentMethods') || '[]');
+            savedMethods.push(paymentMethod);
+            localStorage.setItem('paymentMethods', JSON.stringify(savedMethods));
+
+            alert('Tarjeta agregada exitosamente');
+            cerrarModal('tarjetaModal');
+        }
+
+        function agregarCuentaBancaria(event) {
+            event.preventDefault();
+            const bankName = document.getElementById('bankName').value;
+            const accountNumber = document.getElementById('accountNumber').value;
+            const accountName = document.getElementById('accountName').value;
+
+            // Aquí iría la lógica para guardar la cuenta bancaria
+            const paymentMethod = {
+                type: 'bank',
+                bank: bankName,
+                number: accountNumber.slice(-4),
+                name: accountName
+            };
+
+            // Guardar en localStorage
+            const savedMethods = JSON.parse(localStorage.getItem('paymentMethods') || '[]');
+            savedMethods.push(paymentMethod);
+            localStorage.setItem('paymentMethods', JSON.stringify(savedMethods));
+
+            alert('Cuenta bancaria agregada exitosamente');
+            cerrarModal('bancoModal');
+        }
+    </script>
+</body>
+</html>
