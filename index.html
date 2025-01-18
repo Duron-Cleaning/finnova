@@ -27,6 +27,9 @@
             max-width: 380px;
             padding: 20px;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         .logo {
@@ -63,6 +66,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            flex-grow: 1;
         }
 
         .button {
@@ -102,17 +106,107 @@
         .footer {
             margin-top: 40px;
             text-align: center;
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 40px -20px -20px -20px;
         }
 
         .footer a {
-            color: #4a148c;
+            color: #e0e0e0;
             text-decoration: none;
             margin: 0 10px;
             font-size: 14px;
         }
 
         .footer a:hover {
+            color: white;
             text-decoration: underline;
+        }
+
+        .benefits-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: #4a148c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .benefit-icon i {
+            color: white;
+        }
+
+        .process-section {
+            text-align: center;
+            margin: 30px 0;
+            background: #f8f5ff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .process-title {
+            color: #4a148c;
+            margin-bottom: 20px;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .process-step {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .process-step i {
+            color: #4a148c;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .info-section {
+            background: #4a148c;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .info-section img {
+            width: 200px;
+            height: 200px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-section h2 {
+            color: #FFB500;
+            margin: 15px 0;
+        }
+
+        .info-section p {
+            color: white;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -147,6 +241,65 @@
                 <i class="material-icons">assignment</i>
                 Requisitos para Préstamo
             </a>
+        </div>
+
+        <div class="benefits-section">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="material-icons">speed</i>
+                </div>
+                <div>
+                    <h3>Rápido</h3>
+                    <p>Aprobación en 24 horas</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="material-icons">visibility</i>
+                </div>
+                <div>
+                    <h3>Transparente</h3>
+                    <p>Sin costos ocultos</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="material-icons">security</i>
+                </div>
+                <div>
+                    <h3>Seguro</h3>
+                    <p>Tecnología de punta</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="process-section">
+            <h2 class="process-title">Más fácil... ¡Imposible!</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <i class="material-icons">calculate</i>
+                    <p>Simula tu crédito</p>
+                </div>
+                <div class="process-step">
+                    <i class="material-icons">assignment</i>
+                    <p>Completa tu solicitud</p>
+                </div>
+                <div class="process-step">
+                    <i class="material-icons">draw</i>
+                    <p>Firma digitalmente</p>
+                </div>
+                <div class="process-step">
+                    <i class="material-icons">payments</i>
+                    <p>Recibe tu dinero</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h2>Información del Préstamo</h2>
+            <img src="images/info-icon2.png" alt="Información del Préstamo">
+            <h3>Te prestamos desde L. 700 hasta L. 7,000</h3>
+            <p>Revisamos tu historial crediticio y tus ingresos para ofrecerte el crédito ideal.</p>
         </div>
 
         <div class="footer">
