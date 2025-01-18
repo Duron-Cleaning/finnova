@@ -1,0 +1,196 @@
+.pagos-title {
+    color: #6A0DAD;
+    font-size: 24px;
+    text-align: center;
+    margin: 20px 0;
+    padding: 0 16px;
+}
+
+.pagos-content {
+    padding: 20px 16px;
+}
+
+.pagos-content h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+/* Resumen del Préstamo */
+.resumen-prestamo {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(106, 13, 173, 0.1);
+}
+
+.resumen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.resumen-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.resumen-item .label {
+    color: #666;
+    font-size: 14px;
+}
+
+.resumen-item .value {
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Próxima Cuota */
+.cuota-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(106, 13, 173, 0.1);
+}
+
+.cuota-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.cuota-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cuota-detail .label {
+    color: #666;
+    font-size: 14px;
+}
+
+.cuota-detail .value {
+    color: #333;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.cuota-detail .value.highlight {
+    color: #6A0DAD;
+    font-size: 20px;
+}
+
+/* Botones */
+.pagar-button {
+    background-color: #6A0DAD;
+    color: white;
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.pagar-button:hover {
+    background-color: #8B1FDD;
+}
+
+.historial-button {
+    background-color: white;
+    color: #6A0DAD;
+    border: 1px solid #6A0DAD;
+    width: 100%;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0;
+    transition: all 0.2s ease;
+}
+
+.historial-button:hover {
+    background-color: #f0e6ff;
+}
+
+/* Recordatorio */
+.recordatorio {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 24px;
+    padding: 0 16px;
+}
+
+/* Modal de Pago */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 340px;
+    margin: 20% auto;
+    padding: 24px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    font-size: 24px;
+    color: #666;
+    cursor: pointer;
+}
+
+.metodos-pago {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.metodo-pago-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 16px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.metodo-pago-btn:hover {
+    border-color: #6A0DAD;
+    background-color: #f0e6ff;
+}

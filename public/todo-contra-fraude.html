@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo contra el Fraude - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(36, 5, 73, 0.15);
+            margin: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .header-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+        }
+
+        .header-icon .material-icons {
+            font-size: 40px;
+            color: #FFB500;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #4a148c;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            border: 1px solid #f0e6ff;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #4a148c;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        h2 .material-icons {
+            color: #FFB500;
+            font-size: 24px;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 16px 0;
+        }
+
+        li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+            padding: 12px;
+            background: rgba(74, 20, 140, 0.03);
+            border-radius: 8px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        li:hover {
+            background: rgba(74, 20, 140, 0.06);
+            transform: translateX(5px);
+        }
+
+        li .material-icons {
+            color: #FFB500;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-info {
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 24px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 8px 0;
+        }
+
+        .contact-info a {
+            color: #FFB500;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #ffc107;
+            text-decoration: underline;
+        }
+
+        .btn-back {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 500;
+            margin-top: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-back:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(36, 5, 73, 0.3);
+        }
+
+        .btn-back .material-icons {
+            font-size: 20px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-icon">
+                <span class="material-icons">security</span>
+            </div>
+            <h1>Todo contra el Fraude</h1>
+        </header>
+
+        <main>
+            <section>
+                <h2>
+                    <span class="material-icons">verified_user</span>
+                    Compromiso con la Seguridad
+                </h2>
+                <p>
+                    En Finnova, tu seguridad es nuestra prioridad. Implementamos las prácticas más avanzadas 
+                    de la industria para proteger tus datos y transacciones contra cualquier tipo de fraude.
+                </p>
+            </section>
+
+            <section>
+                <h2>
+                    <span class="material-icons">shield</span>
+                    Medidas Implementadas
+                </h2>
+                <ul>
+                    <li>
+                        <span class="material-icons">fingerprint</span>
+                        <div>
+                            <strong>Validación de Identidad</strong>
+                            <p>Verificamos minuciosamente cada solicitud para garantizar la autenticidad de nuestros usuarios.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons">monitoring</span>
+                        <div>
+                            <strong>Monitoreo en Tiempo Real</strong>
+                            <p>Sistemas avanzados de detección que identifican y previenen actividades sospechosas al instante.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons">school</span>
+                        <div>
+                            <strong>Educación al Usuario</strong>
+                            <p>Te proporcionamos información y recursos para proteger tu cuenta y datos personales.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>
+                    <span class="material-icons">tips_and_updates</span>
+                    Consejos de Protección
+                </h2>
+                <ul>
+                    <li>
+                        <span class="material-icons">lock</span>
+                        <div>
+                            <strong>Nunca compartas tus datos</strong>
+                            <p>Mantén tu información personal, contraseñas y códigos de verificación en privado.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons">mark_email_read</span>
+                        <div>
+                            <strong>Verifica las comunicaciones</strong>
+                            <p>Finnova solo te contactará a través de nuestros canales oficiales.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="material-icons">report</span>
+                        <div>
+                            <strong>Reporta actividades sospechosas</strong>
+                            <p>Si detectas algo inusual, repórtalo inmediatamente a nuestro equipo de seguridad.</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <div class="contact-info">
+                <h2 style="color: white;">
+                    <span class="material-icons">contact_support</span>
+                    ¿Necesitas Ayuda?
+                </h2>
+                <p>Estamos aquí para apoyarte 24/7</p>
+                <p>
+                    Correo: <a href="mailto:seguridad@finnova.com">seguridad@finnova.com</a>
+                </p>
+                <p>
+                    Centro de Ayuda: <a href="ayuda.html">Visitar Centro de Ayuda</a>
+                </p>
+            </div>
+
+            <a href="index.html" class="btn-back">
+                <span class="material-icons">arrow_back</span>
+                Volver a la Página Principal
+            </a>
+        </main>
+    </div>
+</body>
+</html>

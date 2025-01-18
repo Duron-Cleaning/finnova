@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Scoring - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f5f5f5;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .wrapper {
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        .app-header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .header-logo {
+            width: 320px;
+            margin: 0 auto 10px;
+            display: block;
+        }
+
+        .app-title {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        .score-card {
+            background: white;
+            border-radius: 20px;
+            padding: 24px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        .score-card h2 {
+            color: #240549;
+            text-align: center;
+            margin-bottom: 24px;
+            font-size: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #4a148c;
+            box-shadow: 0 0 0 2px rgba(74, 20, 140, 0.1);
+            background: white;
+        }
+
+        .calculate-btn {
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .calculate-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 8px rgba(74, 20, 140, 0.2);
+        }
+
+        .calculate-btn:active {
+            transform: translateY(0);
+        }
+
+        .score-result {
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            border-radius: 20px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #FFB500;
+            margin: 20px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .score-details {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+
+        .score-details p {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .score-details span {
+            font-weight: 500;
+            color: #FFB500;
+        }
+
+        .calculate-btn.loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .calculate-btn.loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            margin: -10px 0 0 -10px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <img src="images/logo-finnova.png" alt="Finnova" class="header-logo">
+        <h1 class="app-title">Credit Scoring</h1>
+    </header>
+
+    <main class="wrapper">
+        <div class="score-card">
+            <h2>Ingresa los datos del solicitante</h2>
+            <div class="form-group">
+                <label>Ingreso Mensual (L.)</label>
+                <input type="number" id="ingresoMensual" min="0" step="100" placeholder="Ej: 12000">
+            </div>
+            <div class="form-group">
+                <label>Pagos Atrasados</label>
+                <input type="number" id="pagosAtrasados" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label>Créditos Activos</label>
+                <input type="number" id="creditosActivos" min="0" value="0">
+            </div>
+            <div class="form-group">
+                <label>Tiempo en Trabajo Actual (años)</label>
+                <input type="number" id="tiempoTrabajo" min="0" step="0.5" placeholder="Ej: 2.5">
+            </div>
+            <div class="form-group">
+                <label>Deuda Actual (L.)</label>
+                <input type="number" id="deudaActual" min="0" step="100" placeholder="Ej: 5000">
+            </div>
+            <div class="form-group">
+                <label>Edad</label>
+                <input type="number" id="edad" min="18" max="99" placeholder="Ej: 25">
+            </div>
+            <div class="form-group">
+                <label>Nivel de Riesgo por Ubicación</label>
+                <select id="riesgoUbicacion">
+                    <option value="bajo">Bajo</option>
+                    <option value="medio">Medio</option>
+                    <option value="alto">Alto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Género</label>
+                <select id="genero">
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                </select>
+            </div>
+            <button class="calculate-btn" onclick="calculateScore()">Calcular Score</button>
+        </div>
+
+        <div class="score-result" id="scoreResult">
+            <h2>Resultado del Scoring</h2>
+            <div class="score-number" id="scoreNumber">850</div>
+            <div class="score-details">
+                <p>Rango <span id="scoreRange">EXCELENTE</span></p>
+                <p>Monto Máximo <span>L. <span id="maxAmount">7,000</span></span></p>
+                <p>Tasa de Interés <span><span id="interestRate">25</span>%</span></p>
+                <p>Plazo Máximo <span><span id="maxTerm">24</span> meses</span></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/credit-scoring.js"></script>
+    <script>
+        const scoring = new CreditScoring();
+
+        function calculateScore() {
+            const button = document.querySelector('.calculate-btn');
+            button.classList.add('loading');
+
+            const userData = {
+                ingresoMensual: Number(document.getElementById('ingresoMensual').value),
+                historialCrediticio: {
+                    pagosAtrasados: Number(document.getElementById('pagosAtrasados').value),
+                    creditosActivos: Number(document.getElementById('creditosActivos').value)
+                },
+                tiempoTrabajo: Number(document.getElementById('tiempoTrabajo').value),
+                deudaActual: Number(document.getElementById('deudaActual').value),
+                edad: Number(document.getElementById('edad').value),
+                ubicacion: {
+                    riesgo: document.getElementById('riesgoUbicacion').value
+                },
+                genero: document.getElementById('genero').value
+            };
+
+            setTimeout(() => {
+                const score = scoring.calculateScore(userData);
+                const recommendation = scoring.getLoanRecommendation(score);
+
+                const resultElement = document.getElementById('scoreResult');
+                resultElement.style.display = 'block';
+
+                document.getElementById('scoreNumber').textContent = score;
+                document.getElementById('scoreRange').textContent = recommendation.rango.toUpperCase();
+                document.getElementById('maxAmount').textContent = recommendation.montoMaximo.toLocaleString();
+                document.getElementById('interestRate').textContent = recommendation.tasaInteres;
+                document.getElementById('maxTerm').textContent = recommendation.plazoMaximo;
+
+                button.classList.remove('loading');
+                resultElement.scrollIntoView({ behavior: 'smooth' });
+            }, 800);
+        }
+    </script>
+</body>
+</html>

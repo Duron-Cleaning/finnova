@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firma Digital - FINNOVA</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        .signature-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        #signatureCanvas {
+            width: 100%;
+            height: 200px;
+            border: 2px solid #f4511e;
+            border-radius: 8px;
+            touch-action: none;
+            background-color: #fff;
+        }
+
+        .signature-buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-signature {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save {
+            background-color: #f4511e;
+            color: white;
+        }
+
+        .btn-clear {
+            background-color: #e0e0e0;
+            color: #333;
+        }
+
+        .signature-instructions {
+            text-align: center;
+            margin: 20px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .signature-preview {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .signature-preview img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Firma Digital</h1>
+        </header>
+
+        <div class="signature-container">
+            <div class="signature-instructions">
+                <p>Por favor, firma en el espacio de abajo usando tu dedo o un lápiz digital</p>
+            </div>
+
+            <canvas id="signatureCanvas"></canvas>
+
+            <div class="signature-buttons">
+                <button class="btn-signature btn-clear" id="clearButton">Borrar</button>
+                <button class="btn-signature btn-save" id="saveButton">Guardar Firma</button>
+            </div>
+
+            <div class="signature-preview">
+                <img id="signaturePreview" alt="Vista previa de la firma">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/firma-digital.js"></script>
+</body>
+</html>

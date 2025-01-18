@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisión y Confirmación - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/revision.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Barra de progreso -->
+        <div class="progress-bar">
+            <div class="progress-step completed">
+                <span class="step-number">1</span>
+                <span class="step-text">Simulación</span>
+            </div>
+            <div class="progress-step completed">
+                <span class="step-number">2</span>
+                <span class="step-text">Solicitud</span>
+            </div>
+            <div class="progress-step active">
+                <span class="step-number">3</span>
+                <span class="step-text">Confirmación</span>
+            </div>
+        </div>
+
+        <header class="app-header">
+            <h1 class="revision-title">Revisión y Confirmación</h1>
+        </header>
+
+        <main class="revision-content">
+            <!-- Datos personales -->
+            <section class="revision-section">
+                <h2>Datos Personales</h2>
+                <div class="data-group">
+                    <label>Nombre completo</label>
+                    <p id="nombreConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Número de identidad</label>
+                    <p id="identidadConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Teléfono</label>
+                    <p id="telefonoConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Correo electrónico</label>
+                    <p id="emailConfirmacion"></p>
+                </div>
+            </section>
+
+            <!-- Resumen del crédito -->
+            <section class="revision-section">
+                <h2>Resumen del Crédito</h2>
+                <div class="data-group">
+                    <label>Monto solicitado</label>
+                    <p id="montoConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Plazo seleccionado</label>
+                    <p id="plazoConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Cuota mensual</label>
+                    <p id="cuotaConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Total desembolsado</label>
+                    <p id="desembolsoConfirmacion"></p>
+                </div>
+                <div class="data-group">
+                    <label>Fecha del primer pago</label>
+                    <p id="fechaPagoConfirmacion"></p>
+                </div>
+            </section>
+
+            <div class="verification-message">
+                Por favor, verifica que todos los datos sean correctos antes de continuar.
+            </div>
+
+            <div class="action-buttons">
+                <button class="edit-button" onclick="window.location.href='completar-solicitud.html'">
+                    <span class="material-icons">edit</span>
+                    Editar Información
+                </button>
+                <button class="confirm-button" onclick="confirmarSolicitud()">
+                    <span class="material-icons">check_circle</span>
+                    Confirmar y Enviar
+                </button>
+            </div>
+
+            <p class="confirmation-notice">
+                Tu solicitud está casi completa. En breve recibirás una confirmación por correo electrónico.
+            </p>
+        </main>
+    </div>
+
+    <script src="js/revision.js"></script>
+</body>
+</html>

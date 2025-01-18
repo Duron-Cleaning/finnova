@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">FINNOVA</string>
+    <string name="title_activity_main">FINNOVA</string>
+    <string name="package_name">com.finnova.app</string>
+    <string name="custom_url_scheme">com.finnova.app</string>
+</resources>

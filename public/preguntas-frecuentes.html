@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 8px 32px rgba(36, 5, 73, 0.15);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 32px;
+            position: relative;
+            padding-top: 16px;
+        }
+
+        .btn-back {
+            position: absolute;
+            left: 0;
+            top: 16px;
+            background: none;
+            border: none;
+            color: #4a148c;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-back:hover {
+            transform: translateX(-5px);
+        }
+
+        .btn-back .material-icons {
+            font-size: 24px;
+        }
+
+        h1 {
+            color: #4a148c;
+            font-size: 24px;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .faq-section {
+            margin-bottom: 24px;
+        }
+
+        .faq-category {
+            color: #4a148c;
+            font-size: 18px;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: rgba(74, 20, 140, 0.03);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .faq-category .material-icons {
+            color: #FFB500;
+            font-size: 20px;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(74, 20, 140, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+
+        .faq-question {
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: #333;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(74, 20, 140, 0.02);
+        }
+
+        .faq-question .material-icons {
+            color: #4a148c;
+            transition: transform 0.3s ease;
+            font-size: 20px;
+        }
+
+        .faq-answer {
+            padding: 0 16px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .faq-item.active {
+            background: rgba(74, 20, 140, 0.02);
+            border-color: rgba(74, 20, 140, 0.2);
+        }
+
+        .faq-item.active .faq-question .material-icons {
+            transform: rotate(180deg);
+            color: #FFB500;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 16px 16px;
+            max-height: 300px;
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 16px;
+                margin: 0;
+                box-shadow: none;
+            }
+
+            .faq-category {
+                font-size: 16px;
+            }
+
+            .faq-question {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="btn-back">
+                <span class="material-icons">arrow_back</span>
+            </a>
+            <h1>Preguntas Frecuentes</h1>
+        </header>
+
+        <div class="faq-section">
+            <h2 class="faq-category">
+                <span class="material-icons">payments</span>
+                Sobre el Préstamo
+            </h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cuál es el monto máximo que puedo solicitar?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    En Finnova puedes solicitar préstamos desde L. 700 hasta L. 7,000. El monto específico dependerá de tu historial crediticio y capacidad de pago.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cuál es el plazo máximo para pagar el préstamo?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Ofrecemos plazos de 3, 6 y 12 meses para que elijas el que mejor se ajuste a tus necesidades. Durante la simulación del crédito podrás ver el detalle de las cuotas para cada plazo.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="faq-category">
+                <span class="material-icons">description</span>
+                Proceso de Solicitud
+            </h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cuánto tiempo tarda la aprobación?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    El proceso de aprobación es súper rápido, puede tomar desde 10 minutos hasta 8 horas como máximo. Una vez aprobado, el dinero se depositará directamente en tu cuenta bancaria.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Qué documentos necesito para solicitar?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Necesitarás tu identificación, comprobante de ingresos y estados de cuenta bancarios. Puedes consultar la lista completa en la sección de Requisitos para Préstamo.
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="faq-category">
+                <span class="material-icons">payment</span>
+                Pagos y Cuotas
+            </h2>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Cómo puedo realizar mis pagos?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Puedes realizar tus pagos directamente desde la app, mediante transferencia bancaria o en puntos de pago autorizados. También puedes configurar pagos automáticos para mayor comodidad.
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    ¿Puedo pagar antes del plazo?
+                    <span class="material-icons">expand_more</span>
+                </button>
+                <div class="faq-answer">
+                    Sí, puedes realizar pagos anticipados o liquidar tu préstamo antes del plazo sin penalización. Esto te ayudará a reducir los intereses generados.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Cerrar todos los items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+
+                // Si el item clickeado no estaba activo, abrirlo
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

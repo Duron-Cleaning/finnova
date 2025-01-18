@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud Enviada - FINNOVA</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/styles.css">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 15px;
+            font-family: Arial, sans-serif;
+        }
+
+        .confirmation-container {
+            width: 380px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-icon {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .success-icon svg {
+            width: 48px;
+            height: 48px;
+            color: #4CAF50;
+        }
+
+        .confirmation-title {
+            color: #4a148c;
+            font-size: 20px;
+            text-align: center;
+            margin: 0 0 15px 0;
+        }
+
+        .confirmation-message {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .next-steps {
+            margin-bottom: 20px;
+        }
+
+        .next-steps h3 {
+            color: #4a148c;
+            font-size: 16px;
+            margin: 0 0 10px 0;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .next-steps li {
+            color: #555;
+            font-size: 14px;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.4;
+        }
+
+        .next-steps li:before {
+            content: "✓";
+            color: #4CAF50;
+            position: absolute;
+            left: 0;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin: 20px -25px;
+            padding: 0 25px;
+            align-items: center;
+        }
+
+        .action-button {
+            width: 90%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+
+        .action-button:hover {
+            opacity: 0.9;
+        }
+
+        .action-button.primary {
+            background: #4a148c;
+            color: white;
+        }
+
+        .action-button.secondary {
+            background: #666;
+            color: white;
+        }
+
+        .material-icons {
+            font-size: 20px;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 13px;
+            color: #666;
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin: 4px 0;
+        }
+
+        .contact-info a {
+            color: #4a148c;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirmation-container">
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+            </svg>
+        </div>
+        <h1 class="confirmation-title">¡Solicitud Enviada con Éxito!</h1>
+        <p class="confirmation-message">
+            Gracias por confiar en FINNOVA. Hemos recibido tu solicitud de préstamo y la estamos procesando.
+        </p>
+
+        <div class="next-steps">
+            <h3>Próximos Pasos:</h3>
+            <ul>
+                <li>Revisaremos tu solicitud</li>
+                <li>Te contactaremos al número proporcionado</li>
+                <li>Evaluaremos tu solicitud según criterios</li>
+                <li>Te notificaremos la decisión por correo</li>
+            </ul>
+        </div>
+
+        <div class="action-buttons">
+            <a href="detalles-credito.html" class="action-button primary">
+                <span class="material-icons">account_balance_wallet</span>
+                Ver Estado de mi Crédito
+            </a>
+            <a href="index.html" class="action-button secondary">
+                <span class="material-icons">home</span>
+                Volver al Inicio
+            </a>
+        </div>
+
+        <div class="contact-info">
+            <p>Si tienes alguna pregunta, contáctanos:</p>
+            <p><a href="tel:+50422164700">📞 +504 2216-4700</a></p>
+            <p><a href="mailto:info@finnova.hn">✉️ info@finnova.hn</a></p>
+        </div>
+    </div>
+</body>
+</html>

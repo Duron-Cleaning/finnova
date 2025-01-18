@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Pagos - Finnova</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/calendario-pagos.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <button class="back-button" onclick="window.location.href='detalles-credito.html'">
+                <span class="material-icons">arrow_back</span>
+            </button>
+            <h1 class="calendario-title">Calendario de Pagos</h1>
+        </header>
+
+        <main class="calendario-content">
+            <!-- Resumen del progreso -->
+            <section class="progress-section">
+                <div class="progress-info">
+                    <h2>Progreso de pagos</h2>
+                    <span id="progressPercentage">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressMessage" class="progress-message">
+                    Recuerda pagar tus cuotas puntualmente para evitar cargos adicionales.
+                </p>
+            </section>
+
+            <!-- Lista de pagos -->
+            <section class="pagos-list" id="pagosList">
+                <!-- Los items se generarán dinámicamente -->
+            </section>
+
+            <!-- Resumen de pagos -->
+            <section class="pagos-summary">
+                <div class="summary-item">
+                    <label>Total pagado</label>
+                    <span id="totalPagado">L. 0.00</span>
+                </div>
+                <div class="summary-item">
+                    <label>Pendiente por pagar</label>
+                    <span id="totalPendiente">L. 0.00</span>
+                </div>
+            </section>
+
+            <!-- Leyenda de estados -->
+            <section class="estados-legend">
+                <div class="legend-item">
+                    <span class="status-dot pagado"></span>
+                    <span>Pagado</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-dot pendiente"></span>
+                    <span>Pendiente</span>
+                </div>
+                <div class="legend-item">
+                    <span class="status-dot atrasado"></span>
+                    <span>Atrasado</span>
+                </div>
+            </section>
+
+            <!-- Botón de volver -->
+            <button class="back-to-details" onclick="window.location.href='detalles-credito.html'">
+                <span class="material-icons">arrow_back</span>
+                Volver a Detalles del Crédito
+            </button>
+
+            <p class="support-message">
+                Para más información o asistencia, contáctanos a través de nuestro soporte.
+            </p>
+        </main>
+
+        <!-- Template para los items de pago -->
+        <template id="pagoItemTemplate">
+            <div class="pago-item">
+                <div class="pago-status">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="pago-info">
+                    <div class="pago-fecha">
+                        <span class="material-icons">event</span>
+                        <span class="fecha-text"></span>
+                    </div>
+                    <div class="pago-monto"></div>
+                </div>
+                <div class="pago-action">
+                    <!-- El botón se agregará dinámicamente si es necesario -->
+                </div>
+            </div>
+        </template>
+    </div>
+
+    <script src="js/calendario-pagos.js"></script>
+</body>
+</html>

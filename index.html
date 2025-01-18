@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Finnova - Tu app de préstamos personales</title>
+    <meta name="description" content="Finnova te ayuda a obtener préstamos personales de forma rápida y segura">
+    <meta name="theme-color" content="#4a148c">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #F8F8F8;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .app-header {
+            width: 100%;
+            background: white;
+            padding: 16px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-logo {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .quick-access {
+            width: 100%;
+            max-width: 380px;
+            margin: 16px auto;
+            padding: 0 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .quick-access-button {
+            width: 100%;
+            padding: 12px 16px;
+            background: #4a148c;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .quick-access-button.register {
+            background: #E65100;
+        }
+
+        .quick-access-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(74, 20, 140, 0.2);
+        }
+
+        .quick-access-button.register:hover {
+            box-shadow: 0 4px 8px rgba(230, 81, 0, 0.2);
+        }
+
+        .app-footer {
+            margin-top: auto;
+            padding: 20px;
+            text-align: center;
+            background: #1a1a1a;
+            color: #e0e0e0;
+        }
+
+        .footer-link {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-copyright {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #e0e0e0;
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 25px 20px;
+            background: linear-gradient(180deg, #f8f5ff 0%, #ffffff 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 140px;
+            margin-top: -10px;
+        }
+
+        .welcome-title {
+            color: #4a148c;
+            font-size: 32px;
+            font-weight: 600;
+            margin: 0 0 4px 0;
+            line-height: 1.2;
+        }
+
+        .welcome-subtitle {
+            color: #4a148c;
+            font-size: 20px;
+            font-weight: normal;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 600px) {
+            .welcome-section {
+                padding: 20px;
+                min-height: 120px;
+            }
+            .welcome-title {
+                font-size: 28px;
+            }
+            .welcome-subtitle {
+                font-size: 18px;
+            }
+        }
+
+        .benefits-section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .benefit-item {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 40px;
+            height: 40px;
+            background: #4a148c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .benefit-icon .material-icons {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .benefit-content {
+            flex: 1;
+        }
+
+        .benefit-title {
+            color: #4a148c;
+            font-weight: 600;
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .benefit-description {
+            color: #666;
+            margin: 4px 0 0 0;
+            font-size: 14px;
+        }
+
+        .process-steps {
+            padding: 30px 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: center;
+            background: #f8f5ff;
+        }
+
+        .process-title {
+            color: #4a148c;
+            font-size: 28px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin: 0 auto;
+            max-width: 500px;
+            padding: 0 20px;
+        }
+
+        .step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .step-icon {
+            width: 90px;
+            height: 90px;
+            background: #4a148c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+
+        .step-text {
+            background: #ff9800;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        @media (max-width: 600px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+        .informative-section {
+            width: 380px;
+            margin: 32px auto;
+            background: linear-gradient(135deg, #240549 0%, #4a148c 100%);
+            border-radius: 16px;
+            padding: 24px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(36, 5, 73, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .informative-section img {
+            width: 345px;
+            height: 345px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 10px auto 24px;
+            display: block;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .informative-section h2 {
+            font-size: 24px;
+            color: #FFB500;
+            margin: 24px 0 16px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .informative-section p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 16px 0 24px;
+            color: rgba(255,255,255,0.9);
+            padding: 0 16px;
+        }
+
+        .informative-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0;
+            display: grid;
+            gap: 16px;
+        }
+
+        .informative-section ul li {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            margin: 0;
+            font-size: 15px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .informative-section ul li:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateX(5px);
+        }
+
+        .informative-section ul li span {
+            margin-right: 12px;
+            background: #FFB500;
+            color: #240549;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 400px) {
+            .informative-section {
+                width: 100%;
+                margin: 20px 0;
+                border-radius: 0;
+            }
+
+            .informative-section img {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1/1;
+            }
+        }
+
+        .help-dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            max-width: 380px;
+            z-index: 1000;
+        }
+
+        .help-box {
+            background: #4a148c;
+            color: white;
+            padding: 20px;
+            border-radius: 16px;
+            margin: 20px;
+        }
+
+        .help-box h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .help-box p {
+            margin: 12px 0;
+            font-size: 14px;
+            line-height: 1.4;
+            opacity: 0.95;
+        }
+
+        .help-box a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .help-box a:hover {
+            text-decoration: underline;
+        }
+
+        .help-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .help-icon {
+            font-size: 24px;
+        }
+
+        .notification-link {
+            position: relative;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #FF3B30;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .action-button {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 380px;
+            margin: 10px auto;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #5E35B1;
+            color: white;
+            text-decoration: none;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-button:first-child {
+            background-color: #FF5722;
+        }
+
+        .action-button .material-icons-outlined {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 380px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #5E35B1;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        h2 {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #5E35B1;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 18px;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-logo">
+                <img src="images/logo-finnova.png" alt="Finnova - Tu futuro financiero a un clic">
+            </div>
+            <img src="images/header-image.png" alt="Finnova" class="header-image">
+        </header>
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <h1 class="welcome-title">Bienvenido a Finnova,</h1>
+            <h2 class="welcome-subtitle">tu futuro financiero a un clic.</h2>
+        </section>
+
+        <!-- Quick Access Section -->
+        <section class="quick-access">
+            <a href="registro.html" class="quick-access-button register">
+                <span class="material-icons-outlined">person_add</span>
+                Regístrate Aquí
+            </a>
+            <a href="simulador-credito.html" class="quick-access-button">
+                <span class="material-icons-outlined">calculate</span>
+                Simula tu Crédito
+            </a>
+            <a href="pagar-cuota.html" class="quick-access-button">
+                <span class="material-icons-outlined">payment</span>
+                Paga tu Cuota
+            </a>
+            <a href="mi-perfil.html" class="quick-access-button">
+                <span class="material-icons-outlined">person</span>
+                Mi Perfil
+            </a>
+            <a href="requisitos-prestamo.html" class="quick-access-button">
+                <span class="material-icons-outlined">list_alt</span>
+                Requisitos para Préstamo
+            </a>
+            <a href="preguntas-frecuentes.html" class="quick-access-button">
+                <span class="material-icons-outlined">help_outline</span>
+                Preguntas Frecuentes
+            </a>
+            <a href="notifications.html" class="quick-access-button notification-link">
+                <span class="material-icons-outlined">notifications</span>
+                Notificaciones
+                <span id="notificationBadge" class="notification-badge">0</span>
+            </a>
+        </section>
+
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <span class="material-icons">speed</span>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Rápido</h3>
+                    <p class="benefit-description">Aprobación en 24 horas</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <span class="material-icons">visibility</span>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Transparente</h3>
+                    <p class="benefit-description">Sin costos ocultos</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <span class="material-icons">security</span>
+                </div>
+                <div class="benefit-content">
+                    <h3 class="benefit-title">Seguro</h3>
+                    <p class="benefit-description">Tecnología de punta</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Steps Section -->
+        <section class="process-steps">
+            <h2 class="process-title">Más fácil... ¡Imposible!</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined" style="font-size: 45px; color: white;">account_balance_wallet</span>
+                    </div>
+                    <div class="step-text">Simula tu crédito</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined" style="font-size: 45px; color: white;">assignment</span>
+                    </div>
+                    <div class="step-text">Completa tu solicitud</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined" style="font-size: 45px; color: white;">draw</span>
+                    </div>
+                    <div class="step-text">Firma digitalmente</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">
+                        <span class="material-icons-outlined" style="font-size: 45px; color: white;">account_balance_wallet</span>
+                    </div>
+                    <div class="step-text">Recibe tu dinero</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informative Section -->
+        <section class="informative-section">
+            <h2>Información del Préstamo</h2>
+            <img src="images/info-icon.png" alt="Información del Préstamo" class="info-image">
+            <h2>Te prestamos desde L. 700 hasta L. 7,000</h2>
+            <p>
+                Revisamos tu historial crediticio y tus ingresos, para ofrecerte el crédito ideal.
+                ¡Tú decides el plazo que mejor se adapta a ti!
+            </p>
+            <ul>
+                <li>
+                    <span class="material-icons">check</span>
+                    ¡Aprobación exprés en 10 minutos sin rodeos!
+                </li>
+                <li>
+                    <span class="material-icons">check</span>
+                    Te encantará nuestro desembolso en 24 horas.
+                </li>
+                <li>
+                    <span class="material-icons">check</span>
+                    Activa el débito automático y relájate.
+                </li>
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div>
+                <a href="terminos-condiciones.html" class="footer-link">Términos y condiciones</a>
+                <a href="politica-privacidad.html" class="footer-link">Política de privacidad</a>
+                <a href="todo-contra-fraude.html" class="footer-link">Todo contra el fraude</a>
+                <a href="#" onclick="showHelpDialog(event)" class="footer-link">Ayuda</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; 2025 Finnova. Todos los derechos reservados.
+            </div>
+        </footer>
+
+        <!-- Help Dialog -->
+        <div class="help-overlay" id="helpOverlay" onclick="hideHelpDialog()"></div>
+        <div class="help-dialog" id="helpDialog">
+            <div class="help-box">
+                <h3>
+                    <span class="material-icons help-icon">help_outline</span>
+                    ¿Necesitas Ayuda?
+                </h3>
+                <p>Estamos aquí para apoyarte 24/7</p>
+                <p>Correo: <a href="mailto:seguridad@finnova.com">seguridad@finnova.com</a></p>
+                <p>Centro de Ayuda: <a href="centro-ayuda.html">Visitar Centro de Ayuda</a></p>
+            </div>
+        </div>
+
+        <script src="js/location.js"></script>
+        <script>
+            // Registrar el Service Worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                    navigator.serviceWorker.register('service-worker.js')
+                        .then(function(registration) {
+                            console.log('ServiceWorker registration successful');
+                        })
+                        .catch(function(err) {
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+                });
+            }
+
+            function showHelpDialog(event) {
+                event.preventDefault();
+                document.getElementById('helpOverlay').style.display = 'block';
+                document.getElementById('helpDialog').style.display = 'block';
+            }
+
+            function hideHelpDialog() {
+                document.getElementById('helpOverlay').style.display = 'none';
+                document.getElementById('helpDialog').style.display = 'none';
+            }
+        </script>
+    </div>
+</body>
+</html>
